@@ -1,0 +1,215 @@
+<html>
+
+<!-- 2 buildings, all work (add to cPS, and said bonus is shown in the score per second container) -  but there is no saving option -->
+
+<head>
+
+		<title>The Idle Stoner </title>
+        <h1>This is a first version, and the game cannot be saved.</h1>
+		
+		<style>
+		
+		.sectionLeft {
+			float: left;
+			width: 80%;
+			
+		}
+			
+		.sectionRight {	
+			float: right;
+			width: 20%;
+	
+		}
+		
+		.scoreContainer {
+				background-color: rgb(92, 41, 74, 0.6);
+				width: 50%;
+				padding: 10px;
+				border-radius: 10px;
+				font-size: 24px;
+				font-weight: bold;
+		
+		}
+		
+		
+		.clickerContainer img {
+			position: relative;
+			transition: all .2s ease-in-out;
+	
+		}
+		
+		.clickerContainer img:hover { transform: scale(1.10); }
+		.clickerContainer img:active { transform: scale(0.99); }
+		
+		
+		
+		
+		.shopButton {
+			background-color:rgb(92, 41, 74, 0.6);
+			transition: all .2s ease-in-out;
+			border-radius: 10px;
+			width: 100%;
+			margin: 10px 0px 10px 10px;
+		
+		}
+		
+		.shopButton:hover {
+			background-color: lightpink;
+			transition: all .2s ease-in-out;
+			
+			
+		}	
+		
+		
+		.shoButton #image {
+			width:25%;
+		}
+
+
+		.shopButton img {
+			height: 64px;
+			width:	64px;
+			
+			
+		}	
+		
+		
+		.shopButton #nameAndCost p {
+			margin: 0px;
+			width: 60%; 
+		
+		}
+		
+		
+		.shopButton #nameAndCost p:first-of-type {
+			font-size: 24px;
+		
+		
+		}
+		
+		.shopButton #amount {
+			font-size: 48px;
+			color: purple;
+			font-family: roboto;
+			width: 15%;	
+		
+		
+		}
+			
+		
+		
+		
+		</style>
+
+</head>
+
+
+	<body>
+		<div class="sectionLeft">
+		
+			<center>
+				<div class="scoreContainer">
+					<span id="score">0</span> weedcrumbs<br>
+					<span id="scorePerSecond">0</span> weedcrumbs per second
+				</div>
+				<br>
+				<div class="clickerContainer">
+					<img src="images/nugget100px.png" height="256px" width="256px" onclick="addToScore(clickingPower)">
+				</div>
+			</center>	
+		</div>
+		
+		<div class="sectionRight">
+			<table class="shopButton" onclick="buyBuzzer()">
+				<tr>
+					<td id="image"><img src="images/bumblebee32px.png"></td>
+					<td id="nameAndCost">
+						<p>Buzzer <span id="buzzercost">15</span> weecrumbs </p>
+					</td>
+					<td id="amount"><span id="buzzers">0</span></td>
+				</tr>
+			
+			</table>
+			
+				<table class="shopButton" onclick="buyPothog()">
+				<tr>
+					<td id="image"><img src="images/pothog32px.png">
+					<td id="nameAndCost">
+						<p>Pothog <span id="pothogcost">100</span> weecrumbs </p>
+					</td>
+					<td id="amount"><span id="pothogs">0</span></td>
+				</tr>
+			</table>
+	
+		</div>
+		
+			<script>
+				var score = 0;
+				var scorePerSecond = buzzers + pothogs * 5;
+				var clickingPower = 1;
+			
+				var buzzerCost = 15;
+				var buzzers = 0;
+			
+				var pothogCost = 100;
+				var pothogs = 0;
+			
+			
+				function buyBuzzer() {
+					if (score >= buzzerCost) {
+					score = score - buzzerCost;
+					buzzers = buzzers + 1;
+					buzzerCost = Math.round(buzzerCost * 1.15);
+				
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("buzzercost").innerHTML = buzzerCost;
+					document.getElementById("buzzers").innerHTML = buzzers;
+					updateScorePerSecond();
+				
+					}
+					
+				}	
+				
+			
+				function buyPothog() {
+					if (score >= pothogCost) {
+					score = score - pothogCost;
+					pothogs = pothogs + 1;
+					pothogCost = Math.round(pothogCost * 1.15);
+					
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("pothogcost").innerHTML = pothogCost;
+					document.getElementById("pothogs").innerHTML = pothogs;
+					updateScorePerSecond();
+					
+					}
+				
+				}
+				
+				function addToScore(amount) {
+					score = score + amount;
+					document.getElementById("score").innerHTML = score;
+					
+				}
+			
+				function updateScorePerSecond() {
+					scorePerSecond = buzzers + pothogs * 5;
+					document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
+				}
+			
+			
+			
+			
+				setInterval(function() {
+					score = score + buzzers;
+					score = score + pothogs * 5;
+					document.getElementById("score").innerHTML = score;
+				}, 1000); // 1000ms = 1 second
+				
+				document.title = score + " weedcrumbs - The Idle Stoner";
+	
+			</script>
+	
+	</body>
+
+</html>
