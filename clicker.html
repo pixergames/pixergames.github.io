@@ -1,11 +1,9 @@
 <html>
-
-<!-- 2 buildings, all work (add to cPS, and said bonus is shown in the score per second container) -  but there is no saving option -->
+<!--Works, but doesn't save.-->    
 
 <head>
 
 		<title>The Idle Stoner </title>
-        <h1>This is a first version, and the game cannot be saved.</h1>
 		
 		<style>
 		
@@ -49,7 +47,7 @@
 			transition: all .2s ease-in-out;
 			border-radius: 10px;
 			width: 100%;
-			margin: 10px 0px 10px 0px;
+			margin: 10px 0px 10px 10px;
 		
 		}
 		
@@ -61,7 +59,7 @@
 		}	
 		
 		
-		.shoButton #image {
+		.shopButton #image {
 			width:25%;
 		}
 
@@ -95,6 +93,17 @@
 		
 		
 		}
+		
+		.sectionFooter {
+			margin-top: 20%;
+			
+		
+		}
+		
+		.unselectable {
+			user-select:none;
+		
+		}
 			
 		
 		
@@ -106,38 +115,50 @@
 
 	<body>
 		<div class="sectionLeft">
-		
-			<center>
-				<div class="scoreContainer">
+		    <center>
+				<div class="scoreContainer unselectable">
 					<span id="score">0</span> weedcrumbs<br>
 					<span id="scorePerSecond">0</span> weedcrumbs per second
 				</div>
 				<br>
-				<div class="clickerContainer">
+				<div class="clickerContainer unselectable">
 					<img src="images/nugget100px.png" height="256px" width="256px" onclick="addToScore(clickingPower)">
 				</div>
-			</center>	
+                <button onclick="saveGame();">Save game</button>
+			</center>
+
+						
 		</div>
 		
 		<div class="sectionRight">
-			<table class="shopButton" onclick="buyBuzzer()">
+			<table class="shopButton unselectable" onclick="buyBuzzer()">
 				<tr>
-					<td id="image"><img src="images/bumblebee32px.png"></td>
+					<td id="image"><img src="images/bumblebee32px-fixed.png"></td>
 					<td id="nameAndCost">
-						<p>Buzzer <span id="buzzercost">15</span> weecrumbs </p>
+						<p>Buzzer <span id="buzzercost">15</span> weedcrumbs </p>
 					</td>
 					<td id="amount"><span id="buzzers">0</span></td>
 				</tr>
 			
 			</table>
 			
-				<table class="shopButton" onclick="buyPothog()">
+				<table class="shopButton unselectable" onclick="buyPothog()">
 				<tr>
 					<td id="image"><img src="images/pothog32px.png">
 					<td id="nameAndCost">
-						<p>Pothog <span id="pothogcost">100</span> weecrumbs </p>
+						<p>Pothog <span id="pothogcost">100</span> weedcrumbs </p>
 					</td>
 					<td id="amount"><span id="pothogs">0</span></td>
+				</tr>
+			</table>
+			
+			<table class="shopButton" onclick="buyCannacat()">
+				<tr>
+					<td id="image"><img src="images/cannacat32px.png">
+					<td id="nameAndCost">
+						<p>Cannacat <span id="cannacatcost">1000</span> weedcrumbs </p>
+					</td>
+					<td id="amount"><span id="cannacats">0</span></td>
 				</tr>
 			</table>
 	
@@ -153,6 +174,9 @@
 			
 				var pothogCost = 100;
 				var pothogs = 0;
+				
+				var cannacatCost = 1000;
+				var cannacats = 0;
 			
 			
 				function buyBuzzer() {
@@ -186,6 +210,22 @@
 				
 				}
 				
+				
+				function buyCannacat() {
+					if (score >= cannacatCost) {
+					score = score - cannacatCost;
+					cannacats = cannacats + 1;
+					cannacatCost = Math.round(cannacatCost * 1.15);
+				
+					document.getElementById("score").innerHTML = score;
+					document.getElementById("cannacatcost").innerHTML = cannacatCost;
+					document.getElementById("cannacats").innerHTML = cannacats;
+					updateScorePerSecond();
+				
+					}
+					
+				}	
+				
 				function addToScore(amount) {
 					score = score + amount;
 					document.getElementById("score").innerHTML = score;
@@ -193,21 +233,69 @@
 				}
 			
 				function updateScorePerSecond() {
-					scorePerSecond = buzzers + pothogs * 5;
+					scorePerSecond = buzzers + pothogs * 5 + cannacats * 70;
 					document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
 				}
-			
-			
+
+                function loadGame() {
+                    var savedGame = JSON.parse(localStorage.getItem(gameSave));
+                    if (typeof savedGame.score !== "undefined") score = savedGame.score;
+                    if (typeof savedGame.clickingPower !== "undefined") clickingPower = savedGame.clickingPower;
+                    if (typeof savedGame.buzzerCost !== "undefined") buzzerCost = savedGame.buzzerCost;
+                    if (typeof savedGame.buzzers !== "undefined") buzzers = savedGame.buzzers;
+                    if (typeof savedGame.pothogCost !== "undefined") pothogCost = savedGame.pothogCost;
+                    if (typeof savedgame.pothogs !== "undefined") pothogs = savedGame.potohogs;
+                    if (typeof savedGame.cannacatCost !== "undefined") cannacatCost = savedGame.cannacatCost;
+                    if (typeof savedGame.cannacats !== "undefined") cannacats = savedGame.cannacats;
+                }    
+
+                function saveGame() {
+                    var gameSave = {
+                        score:score,
+                        clickingPower: clickingPower,
+                        buzzerCost: buzzerCost,
+                        buzzers: buzzers,
+                        pothogCost: pothogCost,
+                        pothogs: pothogs,
+                        cannacatCost: cannacatCost,
+                        cannacats: cannacats
+                    };
+                    localStorage.setItem("gameSave", JSON.stringify(gameSave));
+                }
+
+                window.onload = function() {
+                    loadGame();
+                    updateScorePerSecond();
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("buzzerCost").innerHTML = buzzerCost;
+                    document.getElementById("buzzers").innerHTML = buzzers;
+                    document.getElementById("pothogCost").innerHTML = pothogCost;
+                    document.getElementById("pothogs").innerHTML = pothogs;
+                    document.getElementById("cannacatCost").innerHTML = cannacatCost;
+                    document.getElementById("cannacats").innerHTML = cannacats;
+                    
+                };
 			
 			
 				setInterval(function() {
 					score = score + buzzers;
 					score = score + pothogs * 5;
+					score = score + cannacats *70;
 					document.getElementById("score").innerHTML = score;
 				}, 1000); // 1000ms = 1 second
 				
+                setInterval(function() {
+					saveGame();
+				}, 30000); // 30000ms = 30 seconds; saves the game every 30s
 				document.title = score + " weedcrumbs - The Idle Stoner";
 	
+                document.addEventListener("keydown", function(event) {
+                    if (event.ctrlKey && event.which == 83){
+                        event.preventDefault();
+                        saveGame ();
+                    }
+                }, false);
+
 			</script>
 	
 	</body>
