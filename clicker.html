@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<!--pieces sliced from allover-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    
+    <title>The Idle Stoner</title>
+
+    <link href="style.css" rel="stylesheet">
+	
+    
+
+  </head>  
+
+<body id="whole">
+      
+        <div id="updateLog">
+        <b>ABOUT</b> <br>   
+        This is a stoner-themed Cookie Clicker rip-off.<br><br>
+        <b>HOW TO PLAY:</b><br>
+        Click the nugget to generate weed, and buy help to maximize your weed production.<br><br>
+		Your progress is automatically <b>saved every 30 seconds</b>, and you can also save the game using <b>CTRL+S</b>.
+        
+    
+        
+        </div>
+        <!--Saving box 
+        <div id="money"></div>
+        <div id="saveMenu">
+        <div id="cps"></div>
+        <div class="button" id="exportSave" onclick="exportSave();">Export save</div>
+        <div class="button" id="importSave" onclick="importSave();">Import save</div>
+        <div class="button" id="reset" onclick="Reset();">Reset</div>
+        <div id="version"></div>
+
+        </div>-->
+
+        <span><b>The Idle Stoner</b> &copy; pixergames, 2021 | Check out my  <a href="https://pixergames.github.io/index.html">website</a> | <b>CW: Cannabis</b> - <a href="cw.html">read more</a>
+
+        
+        <div class="sectionLeft">
+
+            <div class="saveMenu">
+                <br>
+            <button onclick="resetGame();">Reset Game</button>
+                
+            
+                
+        </div>
+		
+			<center>
+				<div class="scoreContainer unselectable">
+					<span id="score">0</span> weedcrumbs<br>
+					<span id="scorePerSecond">0</span> weedcrumbs per second
+				</div>
+				<br>
+				<div class="clickerContainer unselectable">
+					<img src="images/nugget100px.png" height="256px" width="256px" onclick="addToScore(clickingPower)">
+				</div>
+               
+			</center>
+
+         
+
+						
+		</div>
+		
+		<div class="sectionRight">
+			<table class="shopButton" onclick="buyBuzzer()">
+				<tr>
+					<td id="image"><img src="images/bumblebee32px.png"></td>
+					<td id="nameAndCost">
+						<p>Buzzer <span id="buzzercost">15</span> weedcrumbs </p>
+					</td>
+					<td id="amount"><span id="buzzers">0</span></td>
+				</tr>
+			
+			</table>
+			
+				<table class="shopButton unselectable" onclick="buyPothog()">
+				<tr>
+					<td id="image"><img src="images/pothog32px.png">
+					<td id="nameAndCost">
+						<p>Pothog <span id="pothogcost">100</span> weedcrumbs </p>
+					</td>
+					<td id="amount"><span id="pothogs">0</span></td>
+				</tr>
+			</table>
+			
+			<table class="shopButton" onclick="buyCannacat()">
+				<tr>
+					<td id="image"><img src="images/cannacat32px.png">
+					<td id="nameAndCost">
+						<p>Cannacat <span id="cannacatcost">1000</span> weedcrumbs </p>
+					</td>
+					<td id="amount"><span id="cannacats">0</span></td>
+				</tr>
+			</table>
+
+			<table class="shopButton" onclick="buyStonernerdfriend()">
+				<tr>
+					<td id="image"><img src="images/stonernerdfriend32px.png">
+					<td id="nameAndCost">
+						<p>Stoner nerd friend <span id="stonernerdfriendcost">8000</span> weedcrumbs </p>
+					</td>
+					<td id="amount"><span id="stonernerdfriends">0</span></td>
+				</tr>
+			</table>
+	
+		</div>
+	
+
+</body>
+
+
+
+</html>

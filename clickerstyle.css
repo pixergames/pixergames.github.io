@@ -1,0 +1,158 @@
+/*this is tweaked orteil code (and a mess) */
+
+
+body {
+	font-family:Courier new,monospace;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: moz-none;
+	-ms-user-select: none;
+	user-select: none;
+	background: #9C7DA8;
+	overflow-y:auto;
+}
+
+body::selection{background:transparent;}
+body::-moz-selection{background:transparent;}
+
+#saveMenu {
+	position:absolute;
+	left:0px;
+	top:45px;
+	margin:10px 16px;
+	padding:2px 6px;
+	font-weight:bold;
+	font-size:14px;
+	background:#fff;
+	background:rgba(255,255,255,0.75);
+	border-radius:8px;
+	line-height:125%;
+	z-index:100;
+	font-size:12px;
+}
+#saveMenu .button {
+	text-decoration:underline;
+	cursor:pointer;
+	font-size:14px;
+    
+}
+
+#saveMenu b {color:#EF4B7E;}
+
+
+#updateLog {
+	position:fixed;
+	left:0px;
+	bottom:80px;
+	margin:16px;
+	padding:6px;
+	font-weight:bold;
+	font-size:12px;
+	color:#666;
+	background:#fff;
+	background:rgba(255,255,255,0.75);
+	border-radius:8px;
+	line-height:125%;
+	width:250px;
+	height:3250x;
+	overflow-y:auto;
+	z-index:100;
+}
+#updateLog b {color:#000;}
+
+
+/*below is tanktot code (better) */
+
+
+.sectionLeft {
+    float: left;
+    width: 70%;
+    
+}
+    
+.sectionRight {	
+    float: right;
+    width: 30%;
+
+}
+
+.scoreContainer {
+        background-color: rgb(92, 41, 74, 0.6);
+        width: 40%;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 24px;
+        font-weight: bold;
+
+}
+
+
+.clickerContainer img {
+    position: relative;
+    transition: all .2s ease-in-out;
+
+}
+
+.clickerContainer img:hover { transform: scale(1.10); }
+.clickerContainer img:active { transform: scale(0.99); }
+
+
+
+
+.shopButton {
+    background-color:rgb(92, 41, 74, 0.6);
+    transition: all .2s ease-in-out;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+
+}
+
+.shopButton:hover {
+    background-color: lightpink;
+    transition: all .2s ease-in-out;
+    
+    
+}	
+
+
+.shopButton #image {
+    width:25%;
+}
+
+
+.shopButton img {
+    height: 64px;
+    width:	64px;
+    
+    
+}	
+
+
+.shopButton #nameAndCost p {
+    margin: 0px;
+    width: 60%;
+    font-family: Courier new,monospace;
+    font-weight: bold;
+ 
+
+}
+
+
+.shopButton #nameAndCost p:first-of-type {
+    font-size: 24px;
+
+
+}
+
+.shopButton #amount {
+    font-size: 48px;
+    color: #D693F0;
+    font-family: roboto;
+    font-weight: bold;
+    width: 15%;	
+
+
+}
+
